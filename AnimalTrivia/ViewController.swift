@@ -17,7 +17,7 @@ class ViewController: UIViewController {
     let imageNumber = 5
     
     var secondCount = 10
-    let randomNumber = Int(arc4random_uniform(5))
+
     
     var correctAnswer = 0
 
@@ -57,22 +57,21 @@ class ViewController: UIViewController {
     
     var itemsList = [questions]()
 
-    required init?(coder aDecoder: NSCoder) {
-
+    func prepareData() {
         itemsList = [
             questions(picture: UIImage(named: ("0.png"))!, info: optionsAndAnswers(options: ["lo san", "小狗"], answer: 1)),
             questions(picture: UIImage(named: ("1.png"))!, info: optionsAndAnswers(options: ["波兒", "so san"], answer: 0)),
             questions(picture: UIImage(named: ("2.png"))!, info: optionsAndAnswers(options: ["小狗", "波兒"], answer: 1)),
-            questions(picture: UIImage(named: ("3.png"))!, info: optionsAndAnswers(options: ["so san", "lo san"], answer: 0)),
+            questions(picture: UIImage(named: ("3.png"))!, info: optionsAndAnswers(options: ["so san", "lo san"], answer: 1)),
             questions(picture: UIImage(named: ("4.png"))!, info: optionsAndAnswers(options: ["so san", "lo san"], answer: 0)),
         ]
-        
-        
-        for index in 0...(imageNumber-1) {
-            imageList.append(UIImage(named: (String(index) + ".png"))!)
-        }
-        
+    }
+    
+    
+    required init?(coder aDecoder: NSCoder) {
+
         super.init(coder: aDecoder)
+        self.prepareData()
     }
     
     override func viewDidLoad() {
@@ -94,11 +93,24 @@ class ViewController: UIViewController {
         if(secondCount > 0)
         {
             labelTimer.text = "Time Left" + String(--secondCount)
+        } else {
+            buttonStart.setTitle("再來噢", forState: .Normal)
+            buttonStart.hidden = false
+            optionButton1.hidden = true
+            optionButton2.hidden = true
+            profilePic.hidden = true
+            labelTimer.hidden = true
+            prepareData()
+
         }
         
     }
     
     func nextQuestion() {
+        let randomNumber = Int(arc4random_uniform(5))
+        
+        print(randomNumber)
+        
         profilePic.image = itemsList[randomNumber].picture
         optionButton1.setTitle(itemsList[randomNumber].info.options[0], forState: .Normal)
         optionButton2.setTitle(itemsList[randomNumber].info.options[1], forState: .Normal)
@@ -109,9 +121,9 @@ class ViewController: UIViewController {
     {
         nextQuestion()
         
-        print(randomNumber)
-
-        
+        secondCount = 10
+        labelTimer.hidden = false
+        profilePic.hidden = false
         buttonStart.hidden = true
         optionButton1.hidden = false
         optionButton2.hidden = false
