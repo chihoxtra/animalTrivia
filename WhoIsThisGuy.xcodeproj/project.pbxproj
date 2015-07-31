@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E4574D31B6BD3470098E6BB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E4574D21B6BD3470098E6BB /* Default-568h@2x.png */; };
 		7E6942081B6365A900EBBDFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6942071B6365A900EBBDFA /* AppDelegate.swift */; };
 		7E69420A1B6365A900EBBDFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E6942091B6365A900EBBDFA /* ViewController.swift */; };
 		7E69420D1B6365A900EBBDFA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E69420B1B6365A900EBBDFA /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7E4574D21B6BD3470098E6BB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		7E6942041B6365A900EBBDFA /* WhoIsThisGuy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhoIsThisGuy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E6942071B6365A900EBBDFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7E6942091B6365A900EBBDFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,6 +50,7 @@
 		7E6941FB1B6365A900EBBDFA = {
 			isa = PBXGroup;
 			children = (
+				7E4574D21B6BD3470098E6BB /* Default-568h@2x.png */,
 				7E6942061B6365A900EBBDFA /* AnimalTrivia */,
 				7E6942051B6365A900EBBDFA /* Products */,
 			);
@@ -141,6 +144,7 @@
 			files = (
 				7E6942121B6365A900EBBDFA /* LaunchScreen.storyboard in Resources */,
 				7E6942221B6372D000EBBDFA /* 1.png in Resources */,
+				7E4574D31B6BD3470098E6BB /* Default-568h@2x.png in Resources */,
 				7E69420F1B6365A900EBBDFA /* Assets.xcassets in Resources */,
 				7E69421E1B6372D000EBBDFA /* 2.png in Resources */,
 				7E6942211B6372D000EBBDFA /* 0.png in Resources */,
