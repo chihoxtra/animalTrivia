@@ -4,16 +4,19 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-    <key>NSExceptionDomains</key>
-    <dict>
-        <key>subdomain.somedomain.com</key>
-        <dict>
-            <key>NSIncludesSubdomains</key><true/>
-            <key>NSExceptionAllowsInsecureHTTPLoads</key><true/>
-            <key>NSExceptionRequiresForwardSecrecy</key><false/>
-        </dict>
-    </dict>
-    <key>CFBundleExecutable</key>
+	<key>NSExceptionDomains</key>
+	<dict>
+		<key>chihoxtra.ddns.net</key>
+		<dict>
+			<key>NSIncludesSubdomains</key>
+			<true/>
+			<key>NSExceptionAllowsInsecureHTTPLoads</key>
+			<true/>
+			<key>NSExceptionRequiresForwardSecrecy</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
