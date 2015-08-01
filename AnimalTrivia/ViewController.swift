@@ -7,18 +7,34 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController {
-    
-    //The array holding all the images
-    var imageList = [UIImage]()
+
     
     // global setting variables
-    let imageNumber = 5
+
     var secondCount = 10
     var correctAnswer = 0
     var dataURL = "http://chihoxtra.ddns.net/images/games/items.txt"
     var score = 0
+    var resultArr: [String] = []
+    var questionNumber = 0
+    var timerstarted = false
+    
+    struct optionsAndAnswers {
+        var options = [String] ()
+        var answer:Int = 0
+    }
+    
+    struct questions {
+        var picture = UIImage()
+        var info = optionsAndAnswers()
+        
+    }
+    
+    var itemsList = [questions]()
+
 
 
     // IBOutlet for various UI components
@@ -31,8 +47,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var labelCorrect: UILabel!
     
-    @IBAction func buttonOption1(sender: UIButton) {
-        if correctAnswer == 0 {
+    func validateAnswer(b: UIButton, ans: Int) {
+        if ((correctAnswer == 0) && (ans == 0)) || ((correctAnswer == 1) && (ans == 1)) {
             print("對")
             labelCorrect.hidden = true
             score++
@@ -41,90 +57,81 @@ class ViewController: UIViewController {
         } else {
             labelCorrect.hidden = false
         }
+    }
+    
+    @IBAction func buttonOption1(sender: UIButton) {
+        validateAnswer(sender, ans: 0)
     }
     
     
     @IBAction func buttonOption2(sender: UIButton) {
-        if correctAnswer == 1 {
-            labelCorrect.hidden = true
-            print("對")
-            score++
-            labelScore.text = "Score:" + String(score)
-            nextQuestion()
-        } else {
-            labelCorrect.hidden = false
+        validateAnswer(sender, ans: 1)
+    }
+    
+    
+    func randomizeArray(var arr: [String]){
+        
+        if (arr.count > 0) {
+            let tmp:String  = arr.removeAtIndex(Int(arc4random_uniform(UInt32(arr.count))))
+            if tmp != "" {
+                resultArr.append(tmp)
+                randomizeArray(arr)
+            }
+            
         }
+        
     }
-    
-    struct optionsAndAnswers {
-        var options = [String] ()
-        var answer:Int = 0
-    }
-    
-    struct questions {
-        var picture = UIImage()
-        var info = optionsAndAnswers()
-    
-    }
-    
-    var itemsList = [questions]()
 
     func prepareData() {
-        
-        
-//        let dataSource = NSURL(string: dataURL)
 
-//        let task = NSURLSession.sharedSession().dataTaskWithURL(dataSource!) {
-//            (data, response, error) in print(NSString(data: data!, encoding: NSUTF8StringEncoding))
-//        }
-//        
-//        task.resume()
+        // testing on data fetch
         
-        //        let rawData = NSData(contentsOfURL:dataSource!)
+        let endpoint = NSURL(string: "http://chihoxtra.ddns.net/images/games/items.txt")
         
-//        var bufferString:NSString = ""
-//        
-//        while (bufferString.length == 0) {
-//            do {
-//                bufferString = try NSString(contentsOfURL: dataSource!, encoding: NSUTF8StringEncoding)
-//
-//            } catch {
-//                // Handle Error
-//                print("error in fetching the data")
-//            }
-//        }
-//        var dataLine = [String](), dataItems = [String]()
-//        
-//        dataLine = bufferString.componentsSeparatedByString("\n1")
-//        
-//        for i in 0...dataLine.count {
-//            dataItems = dataLine[i].componentsSeparatedByString(",")
-//            itemsList.append(questions(picture: UIImage(named: (dataItems[0]))!, info: optionsAndAnswers(options: [dataItems[1], dataItems[2]], answer: Int(dataItems[3])!)))
-//            print(itemsList)
-//        }
+        let task = NSURLSession.sharedSession().dataTaskWithURL(endpoint!) {(rawdata, response, error) in
         
+            let dataBuffer = NSString(data: rawdata!, encoding:NSUTF8StringEncoding) as String?
+            var dataWithoutEmptyContent = dataBuffer!.componentsSeparatedByString("\n")
+            
+            dataWithoutEmptyContent.removeAtIndex(dataWithoutEmptyContent.indexOf("")!)
+            
+            self.randomizeArray(dataWithoutEmptyContent)
+            var dataLine:[String] = self.resultArr
+
+            
+            for i in 0 ... (dataLine.count - 1) {
+                if dataLine[i] != "" {
+                
+                    var dataItem:[String] = dataLine[i].componentsSeparatedByString(",")
+                
+                    self.itemsList.append(questions(picture: UIImage(named: (String(dataItem[0])))!, info: optionsAndAnswers(options: [String(dataItem[1]), String(dataItem[2])], answer: Int(dataItem[3])!)))
+                
+                }
+            }
+
+        }
         
-        itemsList = [
-            questions(picture: UIImage(named: ("0.png"))!, info: optionsAndAnswers(options: ["lo san", "小狗"], answer: 1)),
-            questions(picture: UIImage(named: ("1.png"))!, info: optionsAndAnswers(options: ["波兒", "so san"], answer: 0)),
-            questions(picture: UIImage(named: ("2.png"))!, info: optionsAndAnswers(options: ["小狗", "波兒"], answer: 1)),
-            questions(picture: UIImage(named: ("3.png"))!, info: optionsAndAnswers(options: ["so san", "lo san"], answer: 1)),
-            questions(picture: UIImage(named: ("4.png"))!, info: optionsAndAnswers(options: ["so san", "lo san"], answer: 0)),
-        ]
+        task.resume()
+
+
     }
     
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        score = 0
+        
         self.prepareData()
+        
+
+    }
+    
+    func timerStart () {
+        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
+        labelTimer.hidden = false
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: Selector("update"), userInfo: nil, repeats: true)
-        labelTimer.hidden = false
         
         // Do any additional setup after loading the view, typically from a nib.
     }
@@ -138,38 +145,56 @@ class ViewController: UIViewController {
         
         if(secondCount > 0)
         {
-            if(secondCount < 3) {
+            if(secondCount < 4) {
                 labelTimer.textColor = UIColor.redColor()
             }
-            labelTimer.text = "Time Left" + String(--secondCount)
+            secondCount--
+            labelTimer.text = "Time Left: " + String(secondCount)
         } else {
+            // end game
             labelTimer.text = "Time is up了"
             buttonStart.setTitle("再來噢", forState: .Normal)
             buttonStart.hidden = false
             optionButton1.hidden = true
             optionButton2.hidden = true
             profilePic.hidden = true
-            prepareData()
+            labelCorrect.hidden = true
+
 
         }
         
     }
     
+    
+    
     func nextQuestion() {
-        let randomNumber = Int(arc4random_uniform(5))
+
+        if questionNumber < resultArr.count {
+            profilePic.image = itemsList[questionNumber].picture
+            optionButton1.setTitle(itemsList[questionNumber].info.options[0], forState: .Normal)
+            optionButton2.setTitle(itemsList[questionNumber].info.options[1], forState: .Normal)
+            correctAnswer = itemsList[questionNumber].info.answer
+            questionNumber++
+        }
         
-        print(randomNumber)
-        
-        profilePic.image = itemsList[randomNumber].picture
-        optionButton1.setTitle(itemsList[randomNumber].info.options[0], forState: .Normal)
-        optionButton2.setTitle(itemsList[randomNumber].info.options[1], forState: .Normal)
-        correctAnswer = itemsList[randomNumber].info.answer
+
     }
     
     @IBAction func buttonStart(sender: AnyObject)
     {
+
         nextQuestion()
+        if timerstarted == false {
+            timerStart()
+            timerstarted = true
+        }
         
+        prepareData()
+
+        questionNumber = 0
+        score = 0
+        labelScore.text = "Score: " + String(score)
+    
         secondCount = 10
         labelTimer.hidden = false
         profilePic.hidden = false
