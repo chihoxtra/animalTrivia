@@ -18,6 +18,9 @@
 		7E6942201B6372D000EBBDFA /* 3.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E69421B1B6372D000EBBDFA /* 3.png */; };
 		7E6942211B6372D000EBBDFA /* 0.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E69421C1B6372D000EBBDFA /* 0.png */; };
 		7E6942221B6372D000EBBDFA /* 1.png in Resources */ = {isa = PBXBuildFile; fileRef = 7E69421D1B6372D000EBBDFA /* 1.png */; };
+		7EE506B61B6CB055006FB635 /* 7.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE506B31B6CB055006FB635 /* 7.png */; };
+		7EE506B71B6CB055006FB635 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE506B41B6CB055006FB635 /* 5.png */; };
+		7EE506B81B6CB055006FB635 /* 6.png in Resources */ = {isa = PBXBuildFile; fileRef = 7EE506B51B6CB055006FB635 /* 6.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		7E69421B1B6372D000EBBDFA /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
 		7E69421C1B6372D000EBBDFA /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
 		7E69421D1B6372D000EBBDFA /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		7EE506B31B6CB055006FB635 /* 7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 7.png; sourceTree = "<group>"; };
+		7EE506B41B6CB055006FB635 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		7EE506B51B6CB055006FB635 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 				7E6942091B6365A900EBBDFA /* ViewController.swift */,
 				7E69420B1B6365A900EBBDFA /* Main.storyboard */,
 				7E69420E1B6365A900EBBDFA /* Assets.xcassets */,
+				7EE506B31B6CB055006FB635 /* 7.png */,
+				7EE506B41B6CB055006FB635 /* 5.png */,
+				7EE506B51B6CB055006FB635 /* 6.png */,
 				7E6942191B6372D000EBBDFA /* 2.png */,
 				7E69421A1B6372D000EBBDFA /* 4.png */,
 				7E69421B1B6372D000EBBDFA /* 3.png */,
@@ -143,13 +152,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7EE506B71B6CB055006FB635 /* 5.png in Resources */,
 				7E6942121B6365A900EBBDFA /* LaunchScreen.storyboard in Resources */,
 				7E6942221B6372D000EBBDFA /* 1.png in Resources */,
 				7E4574D31B6BD3470098E6BB /* Default-568h@2x.png in Resources */,
 				7E69420F1B6365A900EBBDFA /* Assets.xcassets in Resources */,
 				7E69421E1B6372D000EBBDFA /* 2.png in Resources */,
+				7EE506B81B6CB055006FB635 /* 6.png in Resources */,
 				7E6942211B6372D000EBBDFA /* 0.png in Resources */,
 				7E6942201B6372D000EBBDFA /* 3.png in Resources */,
+				7EE506B61B6CB055006FB635 /* 7.png in Resources */,
 				7E69421F1B6372D000EBBDFA /* 4.png in Resources */,
 				7E69420D1B6365A900EBBDFA /* Main.storyboard in Resources */,
 			);
