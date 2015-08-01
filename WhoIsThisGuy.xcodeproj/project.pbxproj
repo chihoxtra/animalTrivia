@@ -51,7 +51,7 @@
 			isa = PBXGroup;
 			children = (
 				7E4574D21B6BD3470098E6BB /* Default-568h@2x.png */,
-				7E6942061B6365A900EBBDFA /* AnimalTrivia */,
+				7E6942061B6365A900EBBDFA /* whoIsThisGuy */,
 				7E6942051B6365A900EBBDFA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -64,7 +64,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7E6942061B6365A900EBBDFA /* AnimalTrivia */ = {
+		7E6942061B6365A900EBBDFA /* whoIsThisGuy */ = {
 			isa = PBXGroup;
 			children = (
 				7E6942071B6365A900EBBDFA /* AppDelegate.swift */,
@@ -79,6 +79,7 @@
 				7E6942101B6365A900EBBDFA /* LaunchScreen.storyboard */,
 				7E6942131B6365A900EBBDFA /* Info.plist */,
 			);
+			name = whoIsThisGuy;
 			path = AnimalTrivia;
 			sourceTree = "<group>";
 		};
@@ -277,7 +278,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AnimalTrivia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tv.wakawakawhoisthisguy;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.wakawaka.whoisthisguy;
 				PRODUCT_NAME = WhoIsThisGuy;
 			};
 			name = Debug;
@@ -288,7 +289,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = AnimalTrivia/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = tv.wakawakawhoisthisguy;
+				PRODUCT_BUNDLE_IDENTIFIER = tv.wakawaka.whoisthisguy;
 				PRODUCT_NAME = WhoIsThisGuy;
 			};
 			name = Release;
