@@ -21,6 +21,7 @@ class ViewController: UIViewController {
     var resultArr: [String] = []
     var questionNumber = 0
     var timerstarted = false
+    var gameStatusIsOn = false
     
     struct optionsAndAnswers {
         var options = [String] ()
@@ -84,7 +85,7 @@ class ViewController: UIViewController {
 
     func prepareData() {
 
-        // testing on data fetch
+        // fetching external data and fill up dataItem Array
         
         let endpoint = NSURL(string: "http://chihoxtra.ddns.net/images/games/items.txt")
         
@@ -117,8 +118,11 @@ class ViewController: UIViewController {
     }
     
     
+    // Initializer
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        gameStatusIsOn = true
         
         self.prepareData()
         
@@ -151,8 +155,9 @@ class ViewController: UIViewController {
             secondCount--
             labelTimer.text = "Time Left: " + String(secondCount)
         } else {
-            // end game
+            // time is up!!!
             labelTimer.text = "Time is up了"
+            gameStatusIsOn = false
             buttonStart.setTitle("再來噢", forState: .Normal)
             buttonStart.hidden = false
             optionButton1.hidden = true
@@ -175,6 +180,8 @@ class ViewController: UIViewController {
             optionButton2.setTitle(itemsList[questionNumber].info.options[1], forState: .Normal)
             correctAnswer = itemsList[questionNumber].info.answer
             questionNumber++
+        } else {
+            print("End of questions list!")
         }
         
 
@@ -183,15 +190,18 @@ class ViewController: UIViewController {
     @IBAction func buttonStart(sender: AnyObject)
     {
 
+
         nextQuestion()
         if timerstarted == false {
             timerStart()
             timerstarted = true
         }
         
-        prepareData()
+        if gameStatusIsOn == false {
+            prepareData()
+            questionNumber = 0
+        }
 
-        questionNumber = 0
         score = 0
         labelScore.text = "Score: " + String(score)
     
